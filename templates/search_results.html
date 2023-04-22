@@ -1,0 +1,60 @@
+{% extends 'main.html' %}
+
+{% block title %}
+Search Results
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="search-container">
+    <form class="search-box" method="post">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" name="search_query" placeholder="player nickname" aria-label="Search" aria-describedby="button-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search Profile</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+  <div class="container">
+    <h1 class="text-center my-5">Search Results</h1>
+    {% if players %}
+    <div class="row">
+    {% for player in players %}
+  <div class="col-md-2 mb-5">
+<div class="card" style="max-width: 200px;">
+  <img src="{{ player.avatar }}" class="card-img-top" alt="{{ player.nickname }}">
+
+  <div class="card-body">
+    <h5 class="card-title">{{ player.nickname }}</h5>
+    <p class="card-text">Level: {{ player.level }}</p>
+    <a href="{{ url_for('player_profile', player_id=player.player_id) }}" class="btn btn-primary">Open Profile</a>
+  </div>
+</div>
+  </div>
+{% endfor %}
+</div>
+{% else %}
+<p>No results found.</p>
+{% endif %}
+
+</div>
+
+
+<style>
+  .search-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+  }
+
+  .search-box {
+    width: 500px;
+  }
+</style>
+{% endblock %}
+
+

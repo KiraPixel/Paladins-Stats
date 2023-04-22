@@ -1,0 +1,80 @@
+{% extends 'main.html' %}
+
+{% block title %}
+Match Searcher
+{% endblock %}
+
+{% block body %}
+<table class="table">
+  <thead>
+  	<br>
+	<tr>
+		<th scope="col">Player</th>
+		<th scope="col">Gold Earned</th>
+		<th scope="col">K/D/A</th>
+		<th scope="col">Time on point</th>
+		<th scope="col">Damage</th>
+		<th scope="col">Mitigated</th>
+		<th scope="col">Healing</th>
+	</tr>
+  </thead>
+  <tbody>
+    {% for i in range(0, 5) %}
+      <tr>
+        {% set player = players_info[i] %}
+		  <td style="white-space: nowrap;"><img src="{{ player.Character_avatar }}" alt="Champion Avatar" width="50" height="50" title="{{ player.Character_name }}">
+			  <button type="button" class="btn btn-dark" id="{{ player.playerID }}">{{ player.playerName }}</button>
+			   {{ player.Account_Level }} LVL
+		  </td>
+		  <td style="white-space: nowrap;">{{ player.Gold_Earned }}</td>
+		  <td style="white-space: nowrap;">{{ player.Kills_Player }}/{{ player.Deaths }}/{{ player.Assists }}</td>
+		  <td style="white-space: nowrap;">{{ player.Objective_Assists }}</td>
+		  <td style="white-space: nowrap;">{{ player.Damage_Player }}</td>
+		  <td style="white-space: nowrap;">{{ player.Damage_Mitigated }}</td>
+		  <td style="white-space: nowrap;">{{ player.Healing }}</td>
+      </tr>
+    {% endfor %}
+    <td></td>
+	  <thead>
+		<tr>
+		  	<th scope="col">Player</th>
+			<th scope="col">Gold Earned</th>
+			<th scope="col">K/D/A</th>
+		 	<th scope="col">Time on point</th>
+			<th scope="col">Damage</th>
+	  		<th scope="col">Mitigated</th>
+	  		<th scope="col">Healing</th>
+		</tr>
+	  </thead>
+    {% for i in range(5, 10) %}
+      <tr>
+        {% set player = players_info[i] %}
+		  <td style="white-space: nowrap;"><img src="{{ player.Character_avatar }}" alt="Champion Avatar" width="50" height="50" title="{{ player.Character_name }}">
+			  <button type="button" class="btn btn-dark" id="{{ player.playerID }}">{{ player.playerName }}</button>
+			   {{ player.Account_Level }} LVL
+		  </td>
+		  <td style="white-space: nowrap;">{{ player.Gold_Earned }}</td>
+		  <td style="white-space: nowrap;">{{ player.Kills_Player }}/{{ player.Deaths }}/{{ player.Assists }}</td>
+		  <td style="white-space: nowrap;">{{ player.Objective_Assists }}</td>
+		  <td style="white-space: nowrap;">{{ player.Damage_Player }}</td>
+		  <td style="white-space: nowrap;">{{ player.Damage_Mitigated }}</td>
+		  <td style="white-space: nowrap;">{{ player.Healing }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+<script>
+  var buttons = document.querySelectorAll('button');
+
+  buttons.forEach(function(button) {
+    button.addEventListener('click', function() {
+      var id = this.getAttribute('id');
+
+      window.location.href = '/players/' + id;
+    });
+  });
+</script>
+
+{% endblock %}

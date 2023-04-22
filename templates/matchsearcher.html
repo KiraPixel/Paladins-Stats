@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+
+{% block title %}
+Match Searcher
+{% endblock %}
+
+{% block body %}
+
+  <div class="container">
+    <h1 class="text-center my-5">Match Searcher</h1>
+    <div class="search-container">
+      <form class="search-box">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Match Id" aria-label="Search" aria-describedby="button-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Open Match</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <style>
+    .search-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 100px;
+    }
+
+    .search-box {
+      width: 500px;
+    }
+  </style>
+<script>
+  document.getElementById("button-addon2").addEventListener("click", function() {
+    var searchValue = document.querySelector(".form-control").value;
+    if (/^\d+$/.test(searchValue)) {
+      window.location.href = "/match?match=" + searchValue;
+    } else {
+      alert("Please enter only digits!");
+    }
+  });
+</script>
+
+{% endblock %}

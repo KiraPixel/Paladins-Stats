@@ -1,0 +1,100 @@
+{% extends 'main.html' %}
+
+
+{% block title %}
+Characters
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <h1 class="text-center my-5">All champions</h1>
+  <p class="text-center"><sup><a href="#" style="color: red; font-size: small;">Dear user, welcome to our Paladins website! Unfortunately, this section is still under construction, so at the moment, all we can offer you is a quick link to the character wiki. But fear not, our developers are working tirelessly to bring you some truly amazing functionality soon!</a></sup></p>
+<p class="text-center"><sup><a href="#" style="color: red; font-size: small;">In the near future, you'll be able to add your own guides and builds, as well as access more detailed statistics on the champions. So, hang in there and keep an eye out for updates – we promise it'll be worth the wait! In the meantime, why not take a break and practice your headshots? Who knows, maybe you'll even find a bug that our devs haven't caught yet. Happy gaming!</a></sup></p>
+    <div class="row">
+    <div class="col-md-12">
+      <h2 class="text-center mb-5">Flank</h2>
+    </div>
+  </div>
+  <div class="row">
+    {% for char in flank %}
+      <div class="col-sm-6 col-md-5 col-lg-3">
+        <div class="card mb-4">
+          <a href="https://paladins.fandom.com/wiki/{{char[1]}}" target="_blank">
+            <img src="{{ char[2] }}" title="{{ char[1] }}" alt="{{ char[1] }}" class="card-img-top img-thumbnail img-zoom">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title text-center">{{ char[1] }}</h5>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+    <div class="row">
+        <div class="col-md-12">
+          <h2 class="text-center mb-5">Damage</h2>
+        </div>
+    </div>
+  <div class="row">
+    {% for char in damage %}
+      <div class="col-sm-6 col-md-5 col-lg-3">
+        <div class="card mb-4">
+          <a href="https://paladins.fandom.com/wiki/{{char[1]}}" target="_blank">
+            <img src="{{ char[2] }}" title="{{ char[1] }}" alt="{{ char[1] }}" class="card-img-top img-thumbnail img-zoom">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title text-center">{{ char[1] }}</h5>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+    <div class="row">
+        <div class="col-md-12">
+          <h2 class="text-center mb-5">Tank</h2>
+        </div>
+    </div>
+  <div class="row">
+    {% for char in tank %}
+      <div class="col-sm-6 col-md-5 col-lg-3">
+        <div class="card mb-4">
+          <a href="https://paladins.fandom.com/wiki/{{char[1]}}" target="_blank">
+            <img src="{{ char[2] }}" title="{{ char[1] }}" alt="{{ char[1] }}" class="card-img-top img-thumbnail img-zoom">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title text-center">{{ char[1] }}</h5>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+    <div class="row">
+        <div class="col-md-12">
+          <h2 class="text-center mb-5">Support</h2>
+        </div>
+    </div>
+  <div class="row">
+    {% for char in support %}
+      <div class="col-sm-6 col-md-5 col-lg-3">
+        <div class="card mb-4">
+          <a href="https://paladins.fandom.com/wiki/{{char[1]}}" target="_blank">
+            <img src="{{ char[2] }}" title="{{ char[1] }}" alt="{{ char[1] }}" class="card-img-top img-thumbnail img-zoom">
+          </a>
+          <div class="card-body">
+            <h5 class="card-title text-center">{{ char[1] }}</h5>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .img-zoom:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s ease-in-out;
+  }
+</style>
+{% endblock %}

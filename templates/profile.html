@@ -1,0 +1,145 @@
+{% extends 'main.html' %}
+
+{% block title %}
+{{ps.player_nick_name}} Profile
+{% endblock %}
+
+{% block body %}
+<body>
+    <div class="container mt-4">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="card-title">{{ps.player_nick_name}}  ({{ps.player_ingame_status}})</h1>
+            <div class="row">
+              <div class="col-sm-6">
+                <p class="card-text">Tittle: {{ps.player_title}}</p>
+              </div>
+              <div class="col-sm-6 text-sm-right">
+                <p class="card-text text-muted">Registration Date: {{ps.created_date}} ({{ps.region}})</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: {{ps.ranked_points}}%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">Rank: {{ps.ranked_rank}}</div>
+        </div>
+
+<div class="row mt-4">
+    <div class="col-md-2 d-flex align-items-center">
+        <div style="height: 100%; width: 100%; display: flex; justify-content: center; align-items: center;">
+            <div style="max-height: 100%; max-width: 100%; border-radius: 50%; overflow: hidden;">
+                <img src="{{ps.player_avatar}}" class="img-fluid h-100" alt="Avatar">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-10">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Player Stats</h2>
+                <div class="row mt-3">
+                    <div class="col-sm-6 col-md-4 mb-3">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">Level</h5>
+                                <p class="card-text">{{ps.level}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 mb-3">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">Win/Defeat</h5>
+                                <p class="card-text">{{ps.total_wins}}/{{ps.total_losses}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 mb-3">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">K/D/A</h5>
+                                <p class="card-text">X/X/X</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 mb-3">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">Favorite Role</h5>
+                                <p class="card-text">Role</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 mb-3">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">Last Online</h5>
+                                <p class="card-text">{{ps.last_login}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 mb-3">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Hours</h5>
+                                <p class="card-text">{{ps.in_game_hours}}hs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-4 d-flex justify-content-between">
+            <button type="button" class="btn btn-primary">See Champions</button>
+            <div>
+                <button type="button" class="btn btn-secondary mr-2">Refresh</button>
+                <button type="button" class="btn btn-success">Add Favorite</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<br><br>
+<div class="mt-4">
+    <h3>Last Games</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Champion</th>
+                <th scope="col">Date</th>
+                <th scope="col">K/D/A</th>
+                <th scope="col">Result</th>
+                <th scope="col">Match ID</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if pc %}
+                {% for match in pc %}
+                    <tr>
+                        <td>{{match.Champion}}</td>
+                        <td>{{match.Match_Time}}</td>
+                        <td>{{match.Kills}}/{{match.Deaths}}/{{match.Assists}}</td>
+                        <td>{{match.Win_Status}}</td>
+                        <td>{{match.Match}}</td>
+                        <td><a href='/match?match={{match.Match}}' class="btn btn-primary float-end">Open match</a></td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="6">No matches found.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+    </div>
+</body>
+</html>
+
+
+{% endblock %}
+
+
